@@ -4,230 +4,124 @@
 <meta charset="UTF-8">
 <title>CBT Learning | Rationale Generator</title>
 
-<!-- ================= SOCIAL PREVIEW (WA / FB / TELEGRAM) ================= -->
+<!-- ===== SOCIAL PREVIEW ===== -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="CBT Learning | Rationale Generator">
-<meta property="og:description" content="Simulasi CBT Prometric. Tonton video pembelajaran, lengkapi data, lalu mulai quiz.">
+<meta property="og:description" content="Simulasi CBT Prometric. Tonton video, lengkapi data, lalu mulai quiz.">
 <meta property="og:image" content="https://raw.githubusercontent.com/gyoutrain-lab/production-promo1/main/assets/Prom1.png">
 <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/gyoutrain-lab/production-promo1/main/assets/Prom1.png">
-<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://gyoutrain-lab.github.io/production-promo1/">
-<meta property="og:site_name" content="CBT Learning">
-
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CBT Learning | Rationale Generator">
-<meta name="twitter:description" content="Simulasi CBT Prometric dengan video dan rationale generator.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gyoutrain-lab/production-promo1/main/assets/Prom1.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ================= STYLE ================= -->
 <style>
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#f4f8f6;
-}
-.wrap{
-  max-width:900px;
-  margin:auto;
-  padding:16px;
-}
-h2{margin:6px 0 8px}
-p{margin:0 0 12px}
-video{
-  width:100%;
-  border-radius:14px;
-  background:#000;
-}
-input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:15px;
-}
-button{
-  width:100%;
-  padding:14px;
-  margin-top:14px;
-  border:none;
-  border-radius:14px;
-  font-size:16px;
-  font-weight:700;
-  background:linear-gradient(135deg,#fbbc04,#f29900);
-  cursor:pointer;
-}
-button:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-.note{
-  font-size:13px;
-  color:#666;
-  margin-top:6px;
-}
+body{margin:0;font-family:system-ui;background:#f4f8f6}
+.wrap{max-width:900px;margin:auto;padding:16px}
+
+/* HERO */
+.hero-image{position:relative;max-height:33vh;overflow:hidden;border-radius:18px;margin-bottom:16px}
+.hero-image img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;
+background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.2),transparent)}
+.hero-overlay h1{color:#fff;font-size:26px;margin:0}
+.hero-overlay p{color:#eee;font-size:14px}
+
+/* VIDEO */
+.video-wrap{position:relative}
+video{width:100%;border-radius:14px;background:#000}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+padding:14px 24px;border-radius:999px;border:none;font-weight:700;
+background:linear-gradient(135deg,#ffcc33,#ff9900);cursor:pointer}
+.play-btn.hide{display:none}
+
+/* FORM */
+input{width:100%;padding:12px;margin-top:10px;border-radius:10px;border:1px solid #ccc}
+button{width:100%;padding:14px;margin-top:14px;border:none;border-radius:14px;
+background:linear-gradient(135deg,#fbbc04,#f29900);font-weight:700}
+button:disabled{opacity:.5}
 .hidden{display:none}
 
-/* ===== SOCIAL ICON PREMIUM ===== */
-.social-wrap{
-  margin:14px auto 8px;
-  padding:10px 14px;
-  max-width:420px;
-  border-radius:18px;
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,.65);
-  box-shadow:0 8px 22px rgba(0,0,0,.12);
-  opacity:0;
-  transform:translateY(10px);
-  transition:all .5s ease;
-}
-.social-wrap.show{
-  opacity:1;
-  transform:translateY(0);
-}
-.social-icons{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:14px;
-}
-.social-icons a{
-  pointer-events:none;
-}
-.social-icons img{
-  width:38px;
-  height:38px;
-  padding:8px;
-  background:#fff;
-  border-radius:50%;
-  box-shadow:0 6px 14px rgba(0,0,0,.18);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.social-icons img:hover{
-  transform:scale(1.18);
-  box-shadow:0 10px 22px rgba(0,0,0,.25);
-}
-.social-note{
-  text-align:center;
-  font-size:12px;
-  margin-top:6px;
-  color:#666;
-}
-.social-wrap.unlocked .social-icons a{
-  pointer-events:auto;
-}
-.social-wrap.unlocked .social-note{
-  display:none;
-}
-@media(max-width:480px){
-  .social-icons img{
-    width:34px;
-    height:34px;
-  }
-}
+/* SOCIAL */
+.social-wrap{margin:14px auto;padding:12px;border-radius:18px;
+background:rgba(255,255,255,.7);max-width:420px;text-align:center;opacity:0;transform:translateY(10px);transition:.4s}
+.social-wrap.show{opacity:1;transform:none}
+.social-icons{display:flex;justify-content:center;gap:14px}
+.social-icons a{pointer-events:none}
+.social-wrap.unlocked a{pointer-events:auto}
+.social-icons img{width:38px;height:38px;padding:8px;border-radius:50%;background:#fff}
+.note{font-size:13px;color:#666;margin-top:6px}
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
-  <h2>📘 CBT Learning | Rationale Generator</h2>
-  <p>Please watch the video completely.</p>
-
-  <!-- ================= VIDEO ================= -->
-  <video id="vid"
-         controls
-         playsinline
-         poster="assets/videos/AdvRatio.jpg">
-    <source src="assets/videos/AdvRatio.mp4" type="video/mp4">
-  </video>
-
-  <!-- ================= SOCIAL ICONS (LOCKED) ================= -->
-  <div id="socialWrap" class="social-wrap">
-    <div class="social-icons">
-      <a href="tel:+6285399652487">
-        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
-      </a>
-      <a href="https://wa.me/6285399652487" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-      </a>
-      <a href="mailto:gyoutrain@gmail.com" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
-      </a>
-      <a href="https://web.facebook.com/gyouskill/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-      </a>
-      <a href="https://www.instagram.com/etkyogya" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
-      </a>
-    </div>
-    <div class="social-note">🔒 Unlock after completing the video</div>
+<div class="hero-image">
+  <img src="https://raw.githubusercontent.com/gyoutrain-lab/production-promo1/main/assets/Prom1.png">
+  <div class="hero-overlay">
+    <h1>CBT Prometric Simulation</h1>
+    <p>Real exam atmosphere • Video learning • Rationale generator</p>
   </div>
+</div>
 
-  <!-- ================= FORM (LOCKED) ================= -->
-  <div id="form" class="hidden">
-    <input id="name" placeholder="Your Name">
-    <input id="wa" placeholder="WhatsApp Number">
-  </div>
+<h2>📘 CBT Learning | Rationale Generator</h2>
+<p>Please watch the video completely.</p>
 
-  <button id="go" disabled>
-    Continue to Quiz
-  </button>
+<div class="video-wrap">
+<video id="vid" muted autoplay loop playsinline poster="assets/videos/AdvRatio.jpg">
+<source src="assets/videos/AdvRatio.mp4" type="video/mp4">
+</video>
+<button id="playBtn" class="play-btn">▶ Mulai Belajar</button>
+</div>
 
-  <div class="note">⚠️ Video must be completed to unlock</div>
+<div id="socialWrap" class="social-wrap">
+<div class="social-icons">
+<a href="tel:+6285399652487"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png"></a>
+<a href="https://wa.me/6285399652487"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+<a href="mailto:gyoutrain@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"></a>
+<a href="https://web.facebook.com/gyouskill/"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+<a href="https://www.instagram.com/etkyogya"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png"></a>
+</div>
+<div class="note">🔒 Unlock after video</div>
+</div>
+
+<div id="form" class="hidden">
+<input id="name" placeholder="Your Name">
+<input id="wa" placeholder="WhatsApp Number">
+</div>
+
+<button id="go" disabled>Continue to Quiz</button>
 
 </div>
 
-<!-- ================= SCRIPT ================= -->
 <script>
-const video = document.getElementById('vid');
-const btn   = document.getElementById('go');
-const form  = document.getElementById('form');
-const nameI = document.getElementById('name');
-const waI   = document.getElementById('wa');
-const social= document.getElementById('socialWrap');
+const video=vid,btn=go,form=document.getElementById('form');
+const playBtn=document.getElementById('playBtn');
+const social=document.getElementById('socialWrap');
+const KEY='adv_ratio_done';
 
-const KEY = 'adv_ratio_done';
-
-// tampilkan container social (locked)
 social.classList.add('show');
 
-// jika sudah pernah selesai
-if(localStorage.getItem(KEY)==='yes'){
-  btn.disabled=false;
-  form.classList.remove('hidden');
-  social.classList.add('unlocked');
-}
+playBtn.onclick=()=>{
+video.muted=false;video.loop=false;video.play();
+playBtn.classList.add('hide');
+};
 
-// setelah video selesai
-video.addEventListener('ended', ()=>{
-  localStorage.setItem(KEY,'yes');
-  btn.disabled=false;
-  form.classList.remove('hidden');
-  social.classList.add('unlocked');
-});
+video.onended=()=>{
+localStorage.setItem(KEY,'yes');
+btn.disabled=false;
+form.classList.remove('hidden');
+social.classList.add('unlocked');
+form.scrollIntoView({behavior:'smooth'});
+};
 
-// klik lanjut
-btn.onclick = ()=>{
-  if(localStorage.getItem(KEY)!=='yes'){
-    alert('Please complete the video first.');
-    return;
-  }
-  if(!nameI.value.trim() || !waI.value.trim()){
-    alert('Please fill your name and WhatsApp number.');
-    return;
-  }
-
-  const url =
-  "https://script.google.com/macros/s/AKfycbzJA7PaBSjYTWR9j2N2MHVQ7pDsHoo8eGRNQbAtEqpmpITREXkj6wx48TDDTb07gs8k/exec"
-  + "?name=" + encodeURIComponent(nameI.value)
-  + "&wa=" + encodeURIComponent(waI.value);
-
-  window.location.href = url;
+btn.onclick=()=>{
+location.href="https://script.google.com/macros/s/AKfycbzJA7PaBSjYTWR9j2N2MHVQ7pDsHoo8eGRNQbAtEqpmpITREXkj6wx48TDDTb07gs8k/exec"
++"?name="+encodeURIComponent(name.value)
++"&wa="+encodeURIComponent(wa.value);
 };
 </script>
 
